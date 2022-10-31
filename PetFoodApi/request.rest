@@ -1,0 +1,107 @@
+#Cadastrar usuário Admin ou user
+POST http://localhost:3003/signup
+Content-Type: application/json
+
+
+{
+
+"name":"Lucas Moraes de Quevedo",
+"email":"lucas.lucas@gmail.com",
+"password":"123456",
+"role":"admin"
+
+}
+
+### Login
+# @name login
+POST http://localhost:3003/login
+Content-Type: application/json
+
+
+{
+
+"email":"lucas.lucas@gmail.com",
+"password":"123456",
+"role":"admin"
+
+}
+
+### Buscar usuário por id
+GET http://localhost:3003/getProfile/cec33eee-e306-4325-984e-f7a1e3449e10
+Content-Type: application/json
+Authorization:{{login.response.body.Token}}
+
+
+### Buscar todos os usuários
+GET http://localhost:3003/getAllUsers
+Content-Type: application/json
+Authorization:{{login.response.body.Token}}
+
+
+{
+    "id":"60c3de0e-3c77-492c-8e26-db5487fd33de"
+}
+
+
+### Mudar informações do usário
+PUT http://localhost:3003/updateProfile
+Content-Type: application/json
+Authorization:{{login.response.body.Token}}
+
+
+{
+    "id":"3d3ff4f7-53be-4133-a419-4f589f8308f2",
+    "name":"Lucas Moraes de Quevedo",
+    "email":"lucas.lucas@gmail.com",
+    "password":"123456"
+}
+
+
+### Criar produto
+POST  http://localhost:3003/createProduct
+Content-Type: application/json
+Authorization:{{login.response.body.Token}}
+
+{
+    "name":"camiseta Brasill",
+    "price":299.90,
+    "description":"Camiseta do Brasil Nike amarela tamanho G",
+    "image":"https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTM6-7YfXiRhYC844pyEGDMDojaBdds72jJlVrgEoFT0m7zYglt-_-EwUfA5a9VxT2NpZglcSa5zA&usqp=CAc",
+    "total_quantity":40,
+    "user_id":"cec33eee-e306-4325-984e-f7a1e3449e10"
+}
+
+
+
+
+### Buscar todos os produtos
+# @name getAllProducts
+GET http://localhost:3003/getProducts
+Content-Type: application/json
+Authorization:{{login.response.body.Token}}
+
+
+
+### Realizar a compra
+POST http://localhost:3003/buyProduct
+Content-Type: application/json
+Authorization:{{login.response.body.Token}}
+
+
+{
+
+    "name_product":"camiseta Internacional",
+    "product_quantity":1
+
+
+}
+
+### Deletar produto
+DELETE http://localhost:3003/deleteProduct
+Content-Type: application/json
+Authorization:{{login.response.body.Token}}
+
+{
+    "id":"b53ec9d6-a701-42af-be6c-8685dd83038e",
+    "role":"admin"
+}
